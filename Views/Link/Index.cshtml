@@ -1,0 +1,21 @@
+@model List<projekt2.Models.Link>
+<div>
+    @using (Html.BeginForm("Create", "Link", FormMethod.Post))
+    {
+        <input type="text" name="FullLink" placeholder="Link"/> <br/>
+        <button type="submit">Add</button>
+    }
+</div>  
+<div>
+    <table>
+        @foreach(var item in Model) {
+            <tr>
+                <td><strong>Full Link:</strong></td>
+                <td>@Html.DisplayFor(model => item.FullLink)</td>
+                <td><strong>Short Link:</strong></td>
+                <td><a href="@Url.Action("RedirectToUrl", "Redirect", new { id=item.ShortLink })">@Html.DisplayFor(model => item.ShortLink)</a><td>
+                <td>| @Html.ActionLink("Delete", "Delete", "Link", item)</td>
+            </tr>
+        }
+    </table>
+</div>
